@@ -64,12 +64,13 @@ app.get("/getpost/:id", (req, res) => {
   });
 });
 
-app.get("/update/:id", (req, res) => {
+app.get("/updatepost/:id", (req, res) => {
+  let newTitle = "updated title";
   let post = { title: "2", body: "this is post number one" };
-  let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
+  let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`;
   let query = db.query(sql, post, (err, result) => {
     if (err) throw err;
-    res.send("post feched!!!");
+    res.send("post updated!!!");
     console.log(result);
   });
 });
