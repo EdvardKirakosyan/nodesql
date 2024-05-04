@@ -34,7 +34,45 @@ app.get("/createpostable", (req, res) => {
   });
 });
 
-app.get;
+app.get("/addpost1", (req, res) => {
+  let post = { title: "postone", body: "this is post number one" };
+  let sql = "INSERT INTO posts SET ?";
+  let query = db.query(sql, post, (err, result) => {
+    if (err) throw err;
+    res.send("dode!!!!!!!!!!!!!!!!");
+    console.log(result);
+  });
+});
+
+app.get("/addpost2", (req, res) => {
+  let post = { title: "2", body: "this is post number one" };
+  let sql = "INSERT INTO posts SET ?";
+  let query = db.query(sql, post, (err, result) => {
+    if (err) throw err;
+    res.send("dode2");
+    console.log(result);
+  });
+});
+
+app.get("/getpost/:id", (req, res) => {
+  let post = { title: "2", body: "this is post number one" };
+  let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
+  let query = db.query(sql, post, (err, result) => {
+    if (err) throw err;
+    res.send("post feched!!!");
+    console.log(result);
+  });
+});
+
+app.get("/update/:id", (req, res) => {
+  let post = { title: "2", body: "this is post number one" };
+  let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
+  let query = db.query(sql, post, (err, result) => {
+    if (err) throw err;
+    res.send("post feched!!!");
+    console.log(result);
+  });
+});
 
 app.listen("3000", () => {
   console.log("server started");
